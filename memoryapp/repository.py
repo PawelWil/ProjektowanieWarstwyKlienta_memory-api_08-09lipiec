@@ -1,3 +1,4 @@
+from memoryapp.exceptions import NotFoundException
 from memoryapp.models import Category
 
 categories_list = [
@@ -21,7 +22,12 @@ def create_category(category_name):
 def get_category(category_id):
     results = [category for category in categories_list if category.category_id == category_id]
 
-    return results[0]
+    if results:
+        return results[0]
+    else:
+        raise NotFoundException('Category')
+
+
 
 
 def __next_category_id():
